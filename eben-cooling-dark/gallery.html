@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gallery - Eben Cooling</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0b132b;
+  color: white;
+  line-height: 1.6;
+}
+header {
+  background: #1c2541;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+header h1 { color: #5bc0be; }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+nav a:hover { color: #5bc0be; }
+section { padding: 3rem 2rem; text-align: center; }
+.btn {
+  background: #5bc0be;
+  color: #0b132b;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn:hover { background: #3aafa9; }
+footer {
+  background: #1c2541;
+  text-align: center;
+  padding: 1rem;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+</style>
+<style>
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .gallery img { width: 100%; border-radius: 8px; transition: transform 0.3s; }
+  .gallery img:hover { transform: scale(1.05); }
+</style>
+</head>
+<body>
+<header><h1>Eben Cooling</h1>
+<nav><a href="index.html">Home</a><a href="services.html">Services</a><a href="order.html">Order</a><a href="dashboard.html">Dashboard</a></nav>
+</header>
+<section>
+<h2>Gallery</h2>
+<div class="gallery">
+  <img src="images/one.jpg" alt="AC Installation">
+      <img src="images/four.jpg" alt="Repair Work">
+      <img src="images/three.jpg" alt="Team on site">
+      <img src="images/two.jpg" alt="AC Cleaning">
+</div>
+</section>
+<footer><p>© Eben Cooling 2025 — All Rights Reserved</p></footer>
+</body>
+</html>

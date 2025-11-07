@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard - Eben Cooling</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0b132b;
+  color: white;
+  line-height: 1.6;
+}
+header {
+  background: #1c2541;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+header h1 { color: #5bc0be; }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 1rem;
+  font-weight: bold;
+}
+nav a:hover { color: #5bc0be; }
+section { padding: 3rem 2rem; text-align: center; }
+.btn {
+  background: #5bc0be;
+  color: #0b132b;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn:hover { background: #3aafa9; }
+footer {
+  background: #1c2541;
+  text-align: center;
+  padding: 1rem;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+</style>
+<style>
+.card { background: #1c2541; padding: 1.5rem; border-radius: 10px; margin: 1rem auto; max-width: 600px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+</style>
+</head>
+<body>
+  <script>
+    const password = "Eben@123";
+    const userPassword = prompt ("Enter admin password to access dashboard:");
+    if (userPassword !== password){
+      alert("Access denied");
+      window.location.href = "index.html";
+    }
+  </script>
+<header><h1>Eben Cooling</h1>
+<nav><a href="index.html">Home</a><a href="services.html">Services</a><a href="gallery.html">Gallery</a><a href="order.html">Order</a></nav>
+</header>
+<section>
+<h2>Admin Dashboard</h2>
+<p>(Static preview of client orders)</p>
+<div class="card"><p><strong>Client:</strong> John Doe</p><p><strong>Service:</strong> AC Installation</p><p><strong>Date:</strong> 4 Oct 2025</p></div>
+</section>
+<footer><p>© Eben Cooling 2025 — All Rights Reserved</p></footer>
+</body>
+</html>
