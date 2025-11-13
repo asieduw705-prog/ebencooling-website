@@ -78,7 +78,7 @@ footer {
       const file = document.getElementById('file').files[0];
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('upload_preset', 'ebencooling_upload'); // your preset name
+      formData.append('upload_preset', 'gallery'); // your preset name
 
       const response = await fetch('https://api.cloudinary.com/v1_1/dnw3fdbhr/upload', {
         method: 'POST',
