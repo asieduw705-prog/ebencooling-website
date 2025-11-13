@@ -65,6 +65,42 @@ footer {
       <img src="images/two.jpg" alt="AC Cleaning">
 </div>
 </section>
+  <section id="gallery" style="margin-top: 40px;">
+  <h2>📷 Latest Gallery Uploads</h2>
+  <div id="gallery-container" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;"></div>
+</section>
+
+<script>
+  const cloudName = 'dnw3fdbhr'; // 🔁 replace with your Cloudinary cloud name
+  const folderName = ''; // optional: if you organize uploads in folders
+
+  async function loadGallery() {
+    try {
+      // Cloudinary's listing API endpoint
+      const res = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/ebencooling_upload.json`);
+      const data = await res.json();
+
+      const container = document.getElementById('gallery-container');
+      container.innerHTML = '';
+
+      data.resources.forEach(file => {
+        const isVideo = file.format === 'mp4' || file.resource_type === 'video';
+        const element = document.createElement(isVideo ? 'video' : 'img');
+        element.src = file.secure_url;
+        element.style.maxWidth = '300px';
+        element.style.borderRadius = '10px';
+        element.controls = isVideo; // only show controls for videos
+        container.appendChild(element);
+      });
+    } catch (error) {
+      console.error('Gallery load error:', error);
+      document.getElementById('gallery-container').innerHTML = '<p>⚠️ Unable to load gallery.</p>';
+    }
+  }
+
+  loadGallery();
+</script>
+
 <footer><p>© Eben Cooling 2025 — All Rights Reserved</p></footer>
 </body>
 </html>
