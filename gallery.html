@@ -64,5 +64,22 @@
 
     loadGallery();
   </script>
+  <script>
+  // Listen for uploads from dashboard
+  window.addEventListener("message", (event) => {
+    const { url, type } = event.data;
+    if (url) {
+      const div = document.createElement("div");
+      div.classList.add("item");
+      if (type === "video") {
+        div.innerHTML = `<video controls src="${url}"></video>`;
+      } else {
+        div.innerHTML = `<img src="${url}" alt="Eben Cooling Image">`;
+      }
+      document.getElementById("gallery").prepend(div);
+    }
+  });
+</script>
+
 </body>
 </html>
