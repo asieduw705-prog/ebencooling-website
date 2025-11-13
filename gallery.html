@@ -3,83 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery | Eben Cooling</title>
+  <title>Eben Cooling Gallery</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      text-align: center;
+      background: #f4f4f4;
       padding: 20px;
+      text-align: center;
     }
     h1 {
       color: #333;
     }
-    .gallery {
+    #gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 15px;
       margin-top: 20px;
     }
-    .item {
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
     .item img, .item video {
       width: 100%;
-      display: block;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
   <h1>Eben Cooling Gallery</h1>
-  <div id="gallery" class="gallery"></div>
+  <div id="gallery">Loading images...</div>
 
   <script>
-    const cloudName = "YOUR_CLOUD_NAME"; // 👈🏽 replace this
+    const cloudName = "dnw3fdbhr"; // 👈🏽 Replace with your Cloudinary cloud name
 
     async function loadGallery() {
       try {
-        const response = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/gallery.json`);
-        const data = await response.json();
+        const res = await fetch(`https://res.cloudinary.com/${cloudName}/image/list/gallery.json`);
+        const data = await res.json();
+        const gallery = document.getElementById("gallery");
 
-        const galleryDiv = document.getElementById('gallery');
+        gallery.innerHTML = "";
+
         data.resources.forEach(file => {
-          const div = document.createElement('div');
-          div.classList.add('item');
-          
+          const div = document.createElement("div");
+          div.className = "item";
+
           if (file.resource_type === "video") {
             div.innerHTML = `<video controls src="${file.secure_url}"></video>`;
           } else {
-            div.innerHTML = `<img src="${file.secure_url}" alt="Eben Cooling Image">`;
+            div.innerHTML = `<img src="${file.secure_url}" alt="Eben Cooling image">`;
           }
 
-          galleryDiv.appendChild(div);
+          gallery.appendChild(div);
         });
       } catch (error) {
-        console.error('Error loading gallery:', error);
+        console.error("Gallery load error:", error);
+        document.getElementById("gallery").innerHTML = "❌ Could not load gallery.";
       }
     }
 
-    loadGallery();
+    // Reload gallery automatically after new upload
+    window.addEventListener("message", (event) => {
+      if (event.data.url) {
+        loadGallery();
+      }
+    });
+
+    loadGallery(); // Load on page open
   </script>
-  <script>
-  // Listen for uploads from dashboard
-  window.addEventListener("message", (event) => {
-    const { url, type } = event.data;
-    if (url) {
-      const div = document.createElement("div");
-      div.classList.add("item");
-      if (type === "video") {
-        div.innerHTML = `<video controls src="${url}"></video>`;
-      } else {
-        div.innerHTML = `<img src="${url}" alt="Eben Cooling Image">`;
-      }
-      document.getElementById("gallery").prepend(div);
-    }
-  });
-</script>
-
 </body>
 </html>
