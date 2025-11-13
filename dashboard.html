@@ -63,6 +63,38 @@ footer {
 <nav><a href="index.html">Home</a><a href="services.html">Services</a><a href="gallery.html">Gallery</a><a href="order.html">Order</a></nav>
 </header>
 <section>
+  <section id="upload-section" style="margin-top: 30px;">
+  <h2 style="color: #fff;">📸 Upload Photos & Videos</h2>
+  <form id="upload-form" style="margin-top: 15px;">
+    <input type="file" id="file" accept="image/*,video/*" required>
+    <button type="submit">Upload</button>
+  </form>
+  <div id="upload-result" style="margin-top: 20px; color: #0f0;"></div>
+
+  <script>
+    const form = document.getElementById('upload-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const file = document.getElementById('file').files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'ebencooling_upload'); // your preset name
+
+      const response = await fetch('https://api.cloudinary.com/v1_1/dnw3fdbhr/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+      document.getElementById('upload-result').innerHTML = `
+        ✅ Uploaded Successfully! <br>
+        <a href="${data.secure_url}" target="_blank" style="color:#0ff;">View File</a>
+      `;
+      console.log('File uploaded:', data.secure_url);
+    });
+  </script>
+</section>
+
 <h2>Admin Dashboard</h2>
 <p>(Static preview of client orders)</p>
 <div class="card"><p><strong>Client:</strong> John Doe</p><p><strong>Service:</strong> AC Installation</p><p><strong>Date:</strong> 4 Oct 2025</p></div>
