@@ -1,80 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Order - Eben Cooling</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Service | Eben Cooling</title>
+
 <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0b132b;
-  color: white;
-  line-height: 1.6;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-header {
-  background: #1c2541;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0b132b;
+    color:white;
 }
-header h1 { color: #5bc0be; }
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
+
+/* HEADER */
+
+header{
+    background:#1c2541;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
 }
-nav a:hover { color: #5bc0be; }
-section { padding: 3rem 2rem; text-align: center; }
-.btn {
-  background: #5bc0be;
-  color: #0b132b;
-  padding: 0.7rem 1.5rem;
-  border: none;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
+
+header h1{
+    color:#5bc0be;
 }
-.btn:hover { background: #3aafa9; }
-footer {
-  background: #1c2541;
-  text-align: center;
-  padding: 1rem;
-  color: #ccc;
-  font-size: 0.9rem;
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    transition:0.3s;
 }
-</style>
-<style>
-form { background: #1c2541; padding: 2rem; max-width: 500px; margin: auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
-form input, form textarea { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: none; border-radius: 5px; }
+
+nav a:hover{
+    color:#5bc0be;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:5rem 2rem;
+    background:linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+    url('images/banner.PNG') center/cover no-repeat;
+}
+
+.hero h2{
+    font-size:2.8rem;
+    margin-bottom:1rem;
+}
+
+.hero p{
+    color:#ddd;
+    max-width:700px;
+    margin:auto;
+}
+
+/* FORM SECTION */
+
+.order-section{
+    padding:4rem 2rem;
+}
+
+.form-container{
+    max-width:650px;
+    margin:auto;
+    background:#1c2541;
+    padding:2rem;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.form-container h3{
+    text-align:center;
+    margin-bottom:2rem;
+    color:#5bc0be;
+    font-size:2rem;
+}
+
+/* INPUTS */
+
+form input,
+form select,
+form textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:1rem;
+    border:none;
+    border-radius:10px;
+    font-size:1rem;
+    outline:none;
+}
+
+form textarea{
+    resize:none;
+}
+
+/* BUTTON */
+
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    background:#5bc0be;
+    color:#0b132b;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#3aafa9;
+}
+
+/* CONTACT BOX */
+
+.contact-box{
+    margin-top:2rem;
+    text-align:center;
+    padding:1.5rem;
+    border-top:1px solid rgba(255,255,255,0.1);
+}
+
+.contact-box p{
+    margin:10px 0;
+}
+
+/* FOOTER */
+
+footer{
+    background:#1c2541;
+    text-align:center;
+    padding:1rem;
+    color:#ccc;
+    margin-top:3rem;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+    }
+
+    nav{
+        margin-top:10px;
+    }
+
+    .hero h2{
+        font-size:2rem;
+    }
+
+}
+
 </style>
 </head>
+
 <body>
-<header><h1>Eben Cooling</h1>
-<nav><a href="index.html">Home</a><a href="services.html">Services</a><a href="gallery.html">Gallery</a><a href="dashboard.html">Dashboard</a></nav>
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>Eben Cooling</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="dashboard.html">Dashboard</a>
+    </nav>
+
 </header>
-<section>
-<h2>Book a Service</h2>
-<form action="https://formsubmit.co/ebencoolingtecnology@gmail.com" method="post">
-  <input type="text" name="Full Name" placeholder="Full Name" required>
-  <input type="email" name="Email Address" placeholder="Email Address" required>
-  <input type="tel" name="Phone number" placeholder="Phone number">
-  <select name="Service" required>
-    <option  value="">--select Service Needed--</option>
-    <option value="ac Installation">AC Installation</option>
-    <option value="repairs">Repairs</option>
-    <option value="gas-refilling">Gas Refilling</option>
-    <option value="Servicing">Servicing</option>
-  </select>
-  <textarea name="Message" rows="4" placeholder="Additional Details"></textarea>
-  <button class="btn" type="submit">Submit Order</button>
-  <input type="hidden" name="_subject" value="New Service Order - Eben Cooling">
-  <input type="hidden" name="_next" value="https://yourwebsite.netlify.app/thank-you.html">
-  <input type="hidden" name="_captcha" value="false">
-</form>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h2>Book Your Cooling Service</h2>
+
+    <p>
+        Fast, affordable and professional air conditioner
+        installation, servicing and repairs.
+    </p>
+
 </section>
-<footer><p>© Eben Cooling 2025 — All Rights Reserved</p></footer>
+
+<!-- ORDER FORM -->
+
+<section class="order-section">
+
+<div class="form-container">
+
+<h3>Place Your Order</h3>
+
+<form action="https://formsubmit.co/ebencoolingtecnology@gmail.com" method="POST">
+
+    <!-- Disable Captcha -->
+    <input type="hidden" name="_captcha" value="false">
+
+    <!-- Email Subject -->
+    <input type="hidden" name="_subject"
+    value="New Order From Eben Cooling Website">
+
+    <!-- Redirect After Submit -->
+    <input type="hidden" name="_next"
+    value="thankyou.html">
+
+    <input type="text"
+    name="Full Name"
+    placeholder="Enter Full Name"
+    required>
+
+    <input type="email"
+    name="Email"
+    placeholder="Enter Email Address"
+    required>
+
+    <input type="tel"
+    name="Phone Number"
+    placeholder="Enter Phone Number"
+    required>
+
+    <input type="text"
+    name="Location"
+    placeholder="Your Location">
+
+    <select name="Service Needed" required>
+
+        <option value="">
+            -- Select Service --
+        </option>
+
+        <option value="AC Installation">
+            AC Installation
+        </option>
+
+        <option value="AC Repairs">
+            AC Repairs
+        </option>
+
+        <option value="AC Servicing">
+            AC Servicing
+        </option>
+
+        <option value="Gas Refilling">
+            Gas Refilling
+        </option>
+
+    </select>
+
+    <textarea
+    name="Message"
+    rows="5"
+    placeholder="Additional Details"></textarea>
+
+    <button type="submit" class="btn">
+        Submit Order
+    </button>
+
+</form>
+
+<!-- CONTACT INFO -->
+
+<div class="contact-box">
+
+    <p><strong>Phone:</strong> +233 54 627 2755</p>
+
+    <p><strong>Email:</strong>
+    ebencoolingtecnology@gmail.com</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <p>© Eben Cooling 2025 — All Rights Reserved</p>
+</footer>
+
 </body>
 </html>
