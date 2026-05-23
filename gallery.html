@@ -254,31 +254,53 @@
 const gallery =
 document.querySelector(".gallery");
 
-const savedGallery = JSON.parse(
+/* GET SAVED FILES */
+
+const savedGallery =
+JSON.parse(
 localStorage.getItem("gallery")
 ) || [];
 
+/* LOAD FILES */
+
 savedGallery.forEach(item => {
+
+    // IMAGE
 
     if(item.type === "image"){
 
         gallery.innerHTML +=
 
         `
-        <img src="${item.url}">
+        <div class="media-box">
+
+            <img
+            src="${item.url}"
+            alt="Gallery Image">
+
+        </div>
         `;
 
     }
 
-    else{
+    // VIDEO
+
+    else if(item.type === "video"){
 
         gallery.innerHTML +=
 
         `
-        <video controls>
-            <source src="${item.url}"
-            type="video/mp4">
-        </video>
+        <div class="media-box">
+
+            <video controls>
+
+                <source
+                src="${item.url}"
+                type="video/mp4">
+
+            </video>
+
+        </div>
         `;
 
     }
