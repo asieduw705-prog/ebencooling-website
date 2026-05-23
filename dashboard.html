@@ -1,115 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Eben Cooling</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | Eben Cooling</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0b132b;
+    color:white;
+    min-height:100vh;
+}
+
+/* HEADER */
+
+header{
+    background:#1c2541;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+}
+
+header h1{
+    color:#5bc0be;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#5bc0be;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:4rem 2rem;
+    background:linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+    url('images/banner.PNG') center/cover no-repeat;
+}
+
+.hero h2{
+    font-size:2.5rem;
+    margin-bottom:1rem;
+}
+
+.hero p{
+    color:#ddd;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+    padding:4rem 2rem;
+    display:flex;
+    justify-content:center;
+}
+
+.upload-box{
+    background:#1c2541;
+    width:100%;
+    max-width:650px;
+    padding:2rem;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.upload-box h3{
+    text-align:center;
+    margin-bottom:2rem;
+    color:#5bc0be;
+    font-size:2rem;
+}
+
+/* FILE INPUT */
+
+.file-input{
+    border:2px dashed #5bc0be;
+    padding:2rem;
+    border-radius:15px;
+    text-align:center;
+    margin-bottom:1.5rem;
+    cursor:pointer;
+}
+
+.file-input input{
+    width:100%;
+    color:white;
+}
+
+/* BUTTON */
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    background:#5bc0be;
+    color:#0b132b;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#3aafa9;
+}
+
+/* PREVIEW */
+
+.preview{
+    margin-top:2rem;
+    text-align:center;
+}
+
+.preview img,
+.preview video{
+    width:100%;
+    max-height:400px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-top:1rem;
+}
+
+/* STATUS */
+
+.status{
+    text-align:center;
+    margin-top:1rem;
+    color:#5bc0be;
+    font-weight:bold;
+}
+
+/* FOOTER */
+
+footer{
+    background:#1c2541;
+    text-align:center;
+    padding:1rem;
+    color:#ccc;
+    margin-top:3rem;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
     }
-    h1 {
-      color: #333;
+
+    nav{
+        margin-top:10px;
     }
-    .upload-box {
-      background: white;
-      border-radius: 8px;
-      padding: 20px;
-      max-width: 400px;
-      margin: 20px auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+    .hero h2{
+        font-size:2rem;
     }
-    input[type="file"], button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
-    }
-    button {
-      background: #0078ff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    button:hover {
-      background: #005fcc;
-    }
-    .preview {
-      margin-top: 20px;
-    }
-    .preview img, .preview video {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-  </style>
+
+}
+
+</style>
 </head>
+
 <body>
-  <h1>Eben Cooling Dashboard</h1>
 
-  <div class="upload-box">
-    <h3>Upload Images or Videos</h3>
-    <input type="file" id="fileInput" accept="image/*,video/*">
-    <button onclick="uploadFile()">Upload</button>
+<!-- HEADER -->
+
+<header>
+
+    <h1>Eben Cooling</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="order.html">Orders</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h2>Admin Dashboard</h2>
+
+    <p>
+        Upload new photos and videos to update your gallery.
+    </p>
+
+</section>
+
+<!-- DASHBOARD -->
+
+<section class="dashboard">
+
+<div class="upload-box">
+
+    <h3>Upload Media</h3>
+
+    <div class="file-input">
+
+        <input
+        type="file"
+        id="fileInput"
+        accept="image/*,video/*">
+
+    </div>
+
+    <button onclick="uploadFile()">
+        Upload File
+    </button>
+
+    <div class="status" id="status"></div>
+
     <div class="preview" id="preview"></div>
-  </div>
 
-  <script>
-    const cloudName = "dnw3fdbhr";  // 👈🏽 replace this
-    const uploadPreset = "gallery";       // 👈🏽 the unsigned preset you created
+</div>
 
-    async function uploadFile() {
-      const fileInput = document.getElementById("fileInput");
-      const file = fileInput.files[0];
-      const previewDiv = document.getElementById("preview");
+</section>
 
-      if (!file) {
-        alert("Please select a file first!");
+<!-- FOOTER -->
+
+<footer>
+    <p>© Eben Cooling 2025 — All Rights Reserved</p>
+</footer>
+
+<script>
+
+const cloudName = "dnw3fdbhr";
+const uploadPreset = "gallery";
+
+async function uploadFile(){
+
+    const fileInput =
+    document.getElementById("fileInput");
+
+    const file = fileInput.files[0];
+
+    const preview =
+    document.getElementById("preview");
+
+    const status =
+    document.getElementById("status");
+
+    if(!file){
+
+        alert("Please select a file first.");
         return;
-      }
+    }
 
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", uploadPreset);
+    const formData = new FormData();
 
-      try {
-        previewDiv.innerHTML = "<p>Uploading...</p>";
+    formData.append("file", file);
 
-        const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`, {
-          method: "POST",
-          body: formData
-        });
+    formData.append("upload_preset",
+    uploadPreset);
 
-        const data = await response.json();
-        console.log("Uploaded:", data);
+    try{
 
-        // Show preview
-        if (data.resource_type === "video") {
-          previewDiv.innerHTML = `<video controls src="${data.secure_url}"></video>`;
-        } else {
-          previewDiv.innerHTML = `<img src="${data.secure_url}" alt="Uploaded Image">`;
+        status.innerHTML = "Uploading...";
+
+        const response = await fetch(
+
+        `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
+
+        {
+            method:"POST",
+            body:formData
         }
 
-        alert("✅ Upload successful! The gallery has been updated.");
+        );
 
-        // Automatically update gallery.html
-        updateGallery(data.secure_url, data.resource_type);
+        const data = await response.json();
 
-      } catch (error) {
-        console.error("Upload failed:", error);
-        alert("❌ Upload failed. Please try again.");
-      }
+        console.log(data);
+
+        status.innerHTML =
+        "✅ Upload Successful";
+
+        // IMAGE PREVIEW
+
+        if(data.resource_type === "image"){
+
+            preview.innerHTML =
+
+            `
+            <img src="${data.secure_url}"
+            alt="Uploaded Image">
+            `;
+
+        }
+
+        // VIDEO PREVIEW
+
+        else{
+
+            preview.innerHTML =
+
+            `
+            <video controls>
+                <source
+                src="${data.secure_url}"
+                type="video/mp4">
+            </video>
+            `;
+
+        }
+
+        // SAVE TO LOCAL STORAGE
+
+        let galleryItems = JSON.parse(
+        localStorage.getItem("gallery")
+        ) || [];
+
+        galleryItems.push({
+
+            url:data.secure_url,
+            type:data.resource_type
+
+        });
+
+        localStorage.setItem(
+        "gallery",
+        JSON.stringify(galleryItems)
+        );
+
     }
 
-    // This will notify the gallery page (if open) to reload
-    function updateGallery(url, type) {
-      if (window.opener) {
-        window.opener.postMessage({ url, type }, "*");
-      }
+    catch(error){
+
+        console.error(error);
+
+        status.innerHTML =
+        "❌ Upload Failed";
+
     }
-  </script>
+
+}
+
+</script>
+
 </body>
 </html>
+
