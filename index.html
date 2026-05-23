@@ -79,28 +79,31 @@ footer {
     <h2>Expert Cooling Solutions for Homes & Offices</h2>
     <button class="btn" onclick="window.location.href='order.html'">Book a Service</button>
   </section>
+  
 
- <style>
-     gallery {
-  display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-  gap: 20px
-  padding:20px;
+<style>
+  /* Gallery Section */
+gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
+
+/* Images */
 gallery img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
 }
 
-
+/* Hover Effect */
 gallery img:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
-
   </style>
   <!-- 📸 Picture Gallery -->
   <section id="gallery" class="section">
@@ -132,13 +135,13 @@ gallery img:hover {
 <style>
 
 /* Social Media Section */
-.social-section{
+social-section{
     text-align:center;
     padding:20px;
 }
 
 /* Icons in one straight line */
-.social-icons{
+social-icons{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -146,14 +149,14 @@ gallery img:hover {
 }
 
 /* Small Icons */
-.social-icons a img{
+social-icons a img{
     width:35px;
     height:35px;
     transition:0.3s;
 }
 
 /* Hover Effect */
-.social-icons a img:hover{
+social-icons a img:hover{
     transform:scale(1.1);
 }
 
