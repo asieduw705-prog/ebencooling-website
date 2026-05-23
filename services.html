@@ -1,69 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Services - Eben Cooling</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eben Cooling | Services</title>
+
 <style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0b132b;
-  color: white;
-  line-height: 1.6;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-header {
-  background: #1c2541;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0b132b;
+    color:white;
+    line-height:1.6;
 }
-header h1 { color: #5bc0be; }
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 1rem;
-  font-weight: bold;
+
+/* Header */
+header{
+    background:#1c2541;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
 }
-nav a:hover { color: #5bc0be; }
-section { padding: 3rem 2rem; text-align: center; }
-.btn {
-  background: #5bc0be;
-  color: #0b132b;
-  padding: 0.7rem 1.5rem;
-  border: none;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
+
+header h1{
+    color:#5bc0be;
 }
-.btn:hover { background: #3aafa9; }
-footer {
-  background: #1c2541;
-  text-align: center;
-  padding: 1rem;
-  color: #ccc;
-  font-size: 0.9rem;
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    transition:0.3s;
 }
-</style>
-<style>
-  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-  .card { background: #1c2541; padding: 1.5rem; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
+
+nav a:hover{
+    color:#5bc0be;
+}
+
+/* Hero Section */
+.hero{
+    text-align:center;
+    padding:5rem 2rem;
+    background:linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+    url('images/banner.PNG') center/cover no-repeat;
+}
+
+.hero h2{
+    font-size:2.8rem;
+    margin-bottom:1rem;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:#ddd;
+}
+
+/* Services Section */
+.services-section{
+    padding:4rem 2rem;
+}
+
+.services-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px,1fr));
+    gap:25px;
+}
+
+/* Service Card */
+.service-card{
+    background:#1c2541;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.5);
+    transition:0.4s;
+}
+
+.service-card:hover{
+    transform:translateY(-5px);
+}
+
+.service-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.service-content{
+    padding:1.5rem;
+}
+
+.service-content h3{
+    color:#5bc0be;
+    margin-bottom:10px;
+}
+
+.service-content p{
+    color:#ddd;
+    margin-bottom:20px;
+}
+
+/* Buttons */
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    flex:1;
+    text-align:center;
+    padding:12px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+/* Order Button */
+.order-btn{
+    background:#5bc0be;
+    color:#0b132b;
+}
+
+.order-btn:hover{
+    background:#3aafa9;
+}
+
+/* Details Button */
+.details-btn{
+    border:2px solid #5bc0be;
+    color:#5bc0be;
+}
+
+.details-btn:hover{
+    background:#5bc0be;
+    color:#0b132b;
+}
+
+/* Footer */
+footer{
+    background:#1c2541;
+    text-align:center;
+    padding:1rem;
+    color:#ccc;
+    margin-top:3rem;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+    }
+
+    nav{
+        margin-top:10px;
+    }
+
+    .hero h2{
+        font-size:2rem;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+}
+
 </style>
 </head>
+
 <body>
-<header><h1>Eben Cooling</h1>
-<nav><a href="index.html">Home</a><a href="gallery.html">Gallery</a><a href="order.html">Order</a><a href="dashboard.html">Dashboard</a></nav>
+
+<!-- Header -->
+<header>
+
+    <h1>Eben Cooling</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="order.html">Order</a>
+        <a href="dashboard.html">Dashboard</a>
+    </nav>
+
 </header>
-<section>
-<h2>Our Services</h2>
-<div class="services">
-<div class="card"><h3>Installation</h3><p>Professional air conditioner installation for all brands.</p></div>
-<div class="card"><h3>Repairs</h3><p>Fast and reliable AC repair services anytime you need.</p></div>
-<div class="card"><h3>Servicing</h3><p>Keep your cooling system performing efficiently and lasting longer.</p></div>
-<div class="card"><h3>Gas Refilling</h3><p>Affordable and safe AC gas top-up for all unit types.</p></div>
-</div>
+
+<!-- Hero -->
+<section class="hero">
+
+    <h2>Professional Cooling Services</h2>
+
+    <p>
+        We provide quality air conditioning installation,
+        repairs, maintenance, and cooling solutions for homes,
+        offices, and businesses.
+    </p>
+
 </section>
-<footer><p>© Eben Cooling 2025 — All Rights Reserved</p></footer>
+
+<!-- Services -->
+<section class="services-section">
+
+<div class="services-container">
+
+    <!-- Installation -->
+    <div class="service-card">
+
+        <img src="images/install.jpg" alt="AC Installation">
+
+        <div class="service-content">
+
+            <h3>AC Installation</h3>
+
+            <p>
+                Professional installation services for all air
+                conditioner brands and sizes.
+            </p>
+
+            <div class="buttons">
+
+                <a href="order.html" class="btn order-btn">
+                    Order Now
+                </a>
+
+                <a href="gallery.html" class="btn details-btn">
+                    View Work
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Repairs -->
+    <div class="service-card">
+
+        <img src="images/repair.jpg" alt="AC Repair">
+
+        <div class="service-content">
+
+            <h3>AC Repairs</h3>
+
+            <p>
+                Fast and reliable air conditioner repair services
+                for homes and offices.
+            </p>
+
+            <div class="buttons">
+
+                <a href="order.html" class="btn order-btn">
+                    Order Now
+                </a>
+
+                <a href="gallery.html" class="btn details-btn">
+                    View Work
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Servicing -->
+    <div class="service-card">
+
+        <img src="images/service.jpg" alt="AC Servicing">
+
+        <div class="service-content">
+
+            <h3>AC Servicing</h3>
+
+            <p>
+                Regular maintenance and servicing to keep your
+                cooling system efficient.
+            </p>
+
+            <div class="buttons">
+
+                <a href="order.html" class="btn order-btn">
+                    Order Now
+                </a>
+
+                <a href="gallery.html" class="btn details-btn">
+                    View Work
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Gas Refill -->
+    <div class="service-card">
+
+        <img src="images/gas.jpg" alt="Gas Refilling">
+
+        <div class="service-content">
+
+            <h3>Gas Refilling</h3>
+
+            <p>
+                Affordable AC gas top-up and refilling for all
+                cooling systems.
+            </p>
+
+            <div class="buttons">
+
+                <a href="order.html" class="btn order-btn">
+                    Order Now
+                </a>
+
+                <a href="gallery.html" class="btn details-btn">
+                    View Work
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© Eben Cooling 2025 — All Rights Reserved</p>
+</footer>
+
 </body>
 </html>
