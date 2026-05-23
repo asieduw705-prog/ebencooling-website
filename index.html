@@ -46,7 +46,49 @@ footer {
   color: #ccc;
   font-size: 0.9rem;
 }
-   
+   @media (max-width: 768px){
+
+  header{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav{
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  nav a{
+    margin: 5px;
+  }
+
+  .hero h2{
+    font-size: 1.8rem;
+  }
+
+  section{
+    padding: 2rem 1rem;
+  }
+
+  .services,
+  .about-boxes,
+  .gallery,
+  .services-container{
+    grid-template-columns: 1fr !important;
+  }
+
+  .btn, button{
+    width: 100%;
+  }
+
+}
+    img, video{
+  max-width: 100%;
+  height: auto;
+}
 
 </style>
   <style>
