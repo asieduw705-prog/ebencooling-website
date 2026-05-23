@@ -79,7 +79,24 @@ footer {
     <h2>Expert Cooling Solutions for Homes & Offices</h2>
     <button class="btn" onclick="window.location.href='order.html'">Book a Service</button>
   </section>
-  
+
+  <style>
+    .gallery{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:20px;
+}
+
+.gallery img,
+.gallery video{
+    width:300px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.5);
+}
+    </style>
 
   <!-- 📸 Picture Gallery -->
   <section id="gallery" class="section">
@@ -111,13 +128,13 @@ footer {
 <style>
 
 /* Social Media Section */
-social-section{
+.social-section{
     text-align:center;
     padding:20px;
 }
 
 /* Icons in one straight line */
-social-icons{
+.social-icons{
     display:flex;
     justify-content:center;
     align-items:center;
@@ -125,14 +142,14 @@ social-icons{
 }
 
 /* Small Icons */
-social-icons a img{
+.social-icons a img{
     width:35px;
     height:35px;
     transition:0.3s;
 }
 
 /* Hover Effect */
-social-icons a img:hover{
+.social-icons a img:hover{
     transform:scale(1.1);
 }
 
