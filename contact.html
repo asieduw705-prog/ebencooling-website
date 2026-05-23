@@ -1,1 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Contact Us | Eben Cooling</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0b132b;
+    color:white;
+    line-height:1.6;
+}
+
+/* HEADER */
+
+header{
+    background:#1c2541;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+}
+
+header h1{
+    color:#5bc0be;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#5bc0be;
+}
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    padding:5rem 2rem;
+    background:linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+    url('images/banner.PNG') center/cover no-repeat;
+}
+
+.hero h2{
+    font-size:2.8rem;
+    margin-bottom:1rem;
+}
+
+.hero p{
+    color:#ddd;
+    max-width:700px;
+    margin:auto;
+}
+
+/* CONTACT SECTION */
+
+.contact-section{
+    padding:4rem 2rem;
+}
+
+.contact-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:30px;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* CONTACT INFO */
+
+.contact-info{
+    background:#1c2541;
+    padding:2rem;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.contact-info h3{
+    color:#5bc0be;
+    margin-bottom:1.5rem;
+    font-size:2rem;
+}
+
+.contact-info p{
+    margin-bottom:1rem;
+    color:#ddd;
+}
+
+/* FORM */
+
+.contact-form{
+    background:#1c2541;
+    padding:2rem;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+}
+
+.contact-form h3{
+    color:#5bc0be;
+    margin-bottom:1.5rem;
+    font-size:2rem;
+}
+
+form input,
+form textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:1rem;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:1rem;
+}
+
+form textarea{
+    resize:none;
+}
+
+/* BUTTON */
+
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:30px;
+    background:#5bc0be;
+    color:#0b132b;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#3aafa9;
+}
+
+/* MAP */
+
+.map{
+    margin-top:2rem;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+/* FOOTER */
+
+footer{
+    background:#1c2541;
+    text-align:center;
+    padding:1rem;
+    color:#ccc;
+    margin-top:3rem;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+    }
+
+    nav{
+        margin-top:10px;
+    }
+
+    .hero h2{
+        font-size:2rem;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>Eben Cooling</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="order.html">Order</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <h2>Contact Eben Cooling</h2>
+
+    <p>
+        Reach out to us for professional cooling services,
+        installations, repairs and maintenance.
+    </p>
+
+</section>
+
+<!-- CONTACT SECTION -->
+
+<section class="contact-section">
+
+<div class="contact-container">
+
+    <!-- CONTACT INFO -->
+
+    <div class="contact-info">
+
+        <h3>Get In Touch</h3>
+
+        <p>
+            <strong>Phone:</strong><br>
+            +233 54 627 2755
+        </p>
+
+        <p>
+            <strong>Email:</strong><br>
+            ebencoolingtecnology@gmail.com
+        </p>
+
+        <p>
+            <strong>Location:</strong><br>
+            Accra, Ghana
+        </p>
+
+        <p>
+            <strong>Working Hours:</strong><br>
+            Monday - Saturday<br>
+            8:00 AM - 6:00 PM
+        </p>
+
+        <!-- MAP -->
+
+        <div class="map">
+
+            <iframe
+            src="https://maps.google.com/maps?q=Accra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="250"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+
+    <!-- CONTACT FORM -->
+
+    <div class="contact-form">
+
+        <h3>Send Message</h3>
+
+        <form
+        action="https://formsubmit.co/ebencoolingtecnology@gmail.com"
+        method="POST">
+
+            <!-- SUBJECT -->
+
+            <input
+            type="hidden"
+            name="_subject"
+            value="New Contact Message - Eben Cooling">
+
+            <!-- CAPTCHA -->
+
+            <input
+            type="hidden"
+            name="_captcha"
+            value="false">
+
+            <input
+            type="text"
+            name="Full Name"
+            placeholder="Enter Full Name"
+            required>
+
+            <input
+            type="email"
+            name="Email"
+            placeholder="Enter Email Address"
+            required>
+
+            <input
+            type="tel"
+            name="Phone Number"
+            placeholder="Enter Phone Number">
+
+            <textarea
+            name="Message"
+            rows="6"
+            placeholder="Write your message..."
+            required></textarea>
+
+            <button type="submit" class="btn">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    <p>© Eben Cooling 2025 — All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
