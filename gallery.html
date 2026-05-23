@@ -244,6 +244,42 @@
   <footer>
     <p>© Eben Cooling 2025 — All Rights Reserved</p>
   </footer>
+<script>
 
+const gallery =
+document.querySelector(".gallery");
+
+const savedGallery = JSON.parse(
+localStorage.getItem("gallery")
+) || [];
+
+savedGallery.forEach(item => {
+
+    if(item.type === "image"){
+
+        gallery.innerHTML +=
+
+        `
+        <img src="${item.url}">
+        `;
+
+    }
+
+    else{
+
+        gallery.innerHTML +=
+
+        `
+        <video controls>
+            <source src="${item.url}"
+            type="video/mp4">
+        </video>
+        `;
+
+    }
+
+});
+
+</script>
 </body>
 </html>
