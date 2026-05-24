@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Admin Dashboard | Eben Cooling</title>
+<title>Admin Login | Eben Cooling</title>
 
 <style>
 
@@ -17,92 +17,53 @@
 body{
     font-family:'Segoe UI', sans-serif;
     background:#0b132b;
-    color:white;
-    min-height:100vh;
-}
-
-/* HEADER */
-
-header{
-    background:#1c2541;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:1rem 2rem;
-}
-
-header h1{
-    color:#5bc0be;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-nav a:hover{
-    color:#5bc0be;
-}
-
-/* HERO */
-
-.hero{
-    text-align:center;
-    padding:4rem 2rem;
-    background:linear-gradient(rgba(0,0,0,0.6),
-    rgba(0,0,0,0.6)),
-    url('images/banner.PNG') center/cover no-repeat;
-}
-
-.hero h2{
-    font-size:2.5rem;
-    margin-bottom:1rem;
-}
-
-.hero p{
-    color:#ddd;
-}
-
-/* DASHBOARD */
-
-.dashboard{
-    padding:4rem 2rem;
     display:flex;
     justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    color:white;
 }
 
-.upload-box{
-    background:#1c2541;
+/* LOGIN BOX */
+
+.login-container{
     width:100%;
-    max-width:650px;
+    max-width:400px;
+    background:#1c2541;
     padding:2rem;
     border-radius:20px;
     box-shadow:0 5px 20px rgba(0,0,0,0.5);
+    text-align:center;
 }
 
-.upload-box h3{
-    text-align:center;
-    margin-bottom:2rem;
+.login-container img{
+    width:90px;
+    margin-bottom:1rem;
+}
+
+.login-container h2{
     color:#5bc0be;
-    font-size:2rem;
+    margin-bottom:10px;
 }
 
-/* FILE INPUT */
-
-.file-input{
-    border:2px dashed #5bc0be;
-    padding:2rem;
-    border-radius:15px;
-    text-align:center;
-    margin-bottom:1.5rem;
+.login-container p{
+    color:#ccc;
+    margin-bottom:2rem;
 }
 
-.file-input input{
+/* INPUTS */
+
+.input-box{
+    margin-bottom:1rem;
+}
+
+.input-box input{
     width:100%;
-    color:white;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:1rem;
 }
 
 /* BUTTON */
@@ -118,73 +79,26 @@ button{
     font-weight:bold;
     cursor:pointer;
     transition:0.3s;
-    margin-top:10px;
 }
 
 button:hover{
     background:#3aafa9;
 }
 
-/* LOGOUT BUTTON */
+/* ERROR */
 
-.logout-btn{
-    background:red;
-    color:white;
-}
-
-.logout-btn:hover{
-    opacity:0.8;
-}
-
-/* PREVIEW */
-
-.preview{
-    margin-top:2rem;
-    text-align:center;
-}
-
-.preview img,
-.preview video{
-    width:100%;
-    max-height:400px;
-    object-fit:cover;
-    border-radius:15px;
-    margin-top:1rem;
-}
-
-/* STATUS */
-
-.status{
-    text-align:center;
-    margin-top:1rem;
-    color:#5bc0be;
-    font-weight:bold;
-}
-
-/* FOOTER */
-
-footer{
-    background:#1c2541;
-    text-align:center;
-    padding:1rem;
-    color:#ccc;
-    margin-top:3rem;
+#error{
+    color:red;
+    margin-top:15px;
+    display:none;
 }
 
 /* MOBILE */
 
-@media(max-width:768px){
+@media(max-width:500px){
 
-    header{
-        flex-direction:column;
-    }
-
-    nav{
-        margin-top:10px;
-    }
-
-    .hero h2{
-        font-size:2rem;
+    body{
+        padding:20px;
     }
 
 }
@@ -194,295 +108,132 @@ footer{
 
 <body>
 
-<!-- HEADER -->
+<div class="login-container">
 
-<header>
+    <!-- LOGO -->
 
-    <h1>Eben Cooling</h1>
+    <img
+    src="images/logo.png"
+    alt="Logo">
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="order.html">Orders</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-
-</header>
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <h2>Admin Dashboard</h2>
+    <h2>Admin Login</h2>
 
     <p>
-        Upload and manage gallery images and videos.
+        Eben Cooling Dashboard Access
     </p>
 
-</section>
+    <!-- USERNAME -->
 
-<!-- DASHBOARD -->
-
-<section class="dashboard">
-
-<div class="upload-box">
-
-    <h3>Upload Media</h3>
-
-    <div class="file-input">
+    <div class="input-box">
 
         <input
-        type="file"
-        id="fileInput"
-        accept="image/*,video/*">
+        type="text"
+        id="username"
+        placeholder="Enter Username">
 
     </div>
 
-    <button onclick="uploadFile()">
-        Upload File
+    <!-- PASSWORD -->
+
+    <div class="input-box">
+
+        <input
+        type="password"
+        id="password"
+        placeholder="Enter Password">
+
+    </div>
+
+    <!-- LOGIN BUTTON -->
+
+    <button onclick="login()">
+        Login
     </button>
 
-    <button
-    class="logout-btn"
-    onclick="logout()">
-        Logout
-    </button>
+    <!-- ERROR -->
 
-    <div class="status" id="status"></div>
-
-    <div class="preview" id="preview"></div>
+    <p id="error">
+        Invalid Username or Password
+    </p>
 
 </div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-    <p>© Eben Cooling 2025 — All Rights Reserved</p>
-</footer>
 
 <script>
 
 /* =========================
-   ADMIN LOGIN SETTINGS
+   ADMIN LOGIN DETAILS
 ========================= */
 
 const ADMIN_USERNAME = "ebencooling";
-const ADMIN_PASSWORD = "Eben90";
+const ADMIN_PASSWORD = "eben890";
 
 /* =========================
-   LOGIN CHECK
+   LOGIN FUNCTION
 ========================= */
 
-function checkLogin(){
+function login(){
 
     let username =
-    prompt("Enter Admin Username");
+    document.getElementById(
+    "username"
+    ).value.trim().toLowerCase();
 
     let password =
-    prompt("Enter Admin Password");
+    document.getElementById(
+    "password"
+    ).value.trim();
+
+    let error =
+    document.getElementById(
+    "error"
+    );
 
     if(
         username === ADMIN_USERNAME &&
         password === ADMIN_PASSWORD
     ){
 
+        // SAVE LOGIN SESSION
+
         sessionStorage.setItem(
             "adminLoggedIn",
             "true"
         );
 
-    }
-
-    else{
-
-        alert("Access Denied!");
+        // REDIRECT
 
         window.location.href =
-        "index.html";
-
-    }
-
-}
-
-/* =========================
-   CHECK SESSION
-========================= */
-
-if(
-    sessionStorage.getItem(
-    "adminLoggedIn"
-    ) !== "true"
-){
-
-    checkLogin();
-
-}
-
-/* =========================
-   CLOUDINARY SETTINGS
-========================= */
-
-const cloudName = "dnw3fdbhr";
-const uploadPreset = "gallery";
-
-/* =========================
-   UPLOAD FUNCTION
-========================= */
-
-async function uploadFile(){
-
-    const fileInput =
-    document.getElementById("fileInput");
-
-    const file = fileInput.files[0];
-
-    const preview =
-    document.getElementById("preview");
-
-    const status =
-    document.getElementById("status");
-
-    if(!file){
-
-        alert("Please select a file first.");
-        return;
-    }
-
-    let uploadType = "";
-
-    if(file.type.startsWith("image")){
-
-        uploadType = "image";
-
-    }
-
-    else if(file.type.startsWith("video")){
-
-        uploadType = "video";
+        "dashboard.html";
 
     }
 
     else{
 
-        alert("Unsupported file type");
-        return;
-
-    }
-
-    const formData = new FormData();
-
-    formData.append("file", file);
-
-    formData.append(
-        "upload_preset",
-        uploadPreset
-    );
-
-    try{
-
-        status.innerHTML =
-        "Uploading...";
-
-        const response = await fetch(
-
-        `https://api.cloudinary.com/v1_1/${cloudName}/${uploadType}/upload`,
-
-        {
-            method:"POST",
-            body:formData
-        }
-
-        );
-
-        const data =
-        await response.json();
-
-        status.innerHTML =
-        "✅ Upload Successful";
-
-        // IMAGE
-
-        if(uploadType === "image"){
-
-            preview.innerHTML =
-
-            `
-            <img
-            src="${data.secure_url}"
-            alt="Uploaded Image">
-            `;
-
-        }
-
-        // VIDEO
-
-        else{
-
-            preview.innerHTML =
-
-            `
-            <video controls>
-                <source
-                src="${data.secure_url}"
-                type="video/mp4">
-            </video>
-            `;
-
-        }
-
-        // SAVE
-
-        let galleryItems = JSON.parse(
-        localStorage.getItem("gallery")
-        ) || [];
-
-        galleryItems.push({
-
-            url:data.secure_url,
-            type:uploadType
-
-        });
-
-        localStorage.setItem(
-            "gallery",
-            JSON.stringify(galleryItems)
-        );
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        status.innerHTML =
-        "❌ Upload Failed";
+        error.style.display =
+        "block";
 
     }
 
 }
 
 /* =========================
-   LOGOUT FUNCTION
+   ENTER KEY SUPPORT
 ========================= */
 
-function logout(){
+document.addEventListener(
+"keydown",
 
-    sessionStorage.removeItem(
-    "adminLoggedIn"
-    );
+function(event){
 
-    alert("Logged Out");
+    if(event.key === "Enter"){
 
-    window.location.href =
-    "index.html";
+        login();
 
-}
+    }
+
+});
 
 </script>
 
 </body>
 </html>
-
