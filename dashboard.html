@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Dashboard | Eben Cooling</title>
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
 
 *{
     margin:0;
@@ -21,7 +27,9 @@ body{
     min-height:100vh;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
     background:#1c2541;
@@ -44,21 +52,25 @@ nav a{
     color:white;
     text-decoration:none;
     font-weight:bold;
-    transition:0.3s;
 }
 
 nav a:hover{
     color:#5bc0be;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     text-align:center;
     padding:4rem 2rem;
-    background:linear-gradient(
+
+    background:
+    linear-gradient(
     rgba(0,0,0,0.6),
     rgba(0,0,0,0.6)),
+
     url('images/banner.PNG')
     center/cover no-repeat;
 }
@@ -72,7 +84,9 @@ nav a:hover{
     color:#ddd;
 }
 
-/* DASHBOARD */
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard{
     padding:4rem 2rem;
@@ -93,7 +107,6 @@ nav a:hover{
     text-align:center;
     color:#5bc0be;
     margin-bottom:2rem;
-    font-size:2rem;
 }
 
 /* FILE INPUT */
@@ -103,12 +116,11 @@ nav a:hover{
     padding:2rem;
     border-radius:15px;
     text-align:center;
-    margin-bottom:1.5rem;
+    margin-bottom:1rem;
 }
 
 .file-input input{
     width:100%;
-    color:white;
 }
 
 /* BUTTONS */
@@ -123,7 +135,6 @@ button{
     font-size:1rem;
     font-weight:bold;
     cursor:pointer;
-    transition:0.3s;
     margin-top:10px;
 }
 
@@ -134,10 +145,6 @@ button:hover{
 .logout-btn{
     background:red;
     color:white;
-}
-
-.logout-btn:hover{
-    opacity:0.8;
 }
 
 /* STATUS */
@@ -159,7 +166,6 @@ button:hover{
 .preview video{
     width:100%;
     border-radius:15px;
-    margin-top:1rem;
 }
 
 /* FOOTER */
@@ -172,7 +178,9 @@ footer{
     margin-top:3rem;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:768px){
 
@@ -202,16 +210,14 @@ footer{
 
 <body>
 
-<!-- LOGIN PROTECTION -->
-
 <script>
 
 /* =========================
-   CHECK LOGIN SESSION
+   CHECK LOGIN
 ========================= */
 
 if(
-    sessionStorage.getItem(
+    localStorage.getItem(
     "adminLoggedIn"
     ) !== "true"
 ){
@@ -223,96 +229,109 @@ if(
 
 </script>
 
-<!-- HEADER -->
+<!-- ======================
+     HEADER
+======================= -->
 
 <header>
 
-    <h1>Eben Cooling</h1>
+<h1>Eben Cooling</h1>
 
-    <nav>
+<nav>
 
-        <a href="index.html">Home</a>
+<a href="index.html">Home</a>
 
-        <a href="services.html">Services</a>
+<a href="services.html">Services</a>
 
-        <a href="gallery.html">Gallery</a>
+<a href="gallery.html">Gallery</a>
 
-        <a href="order.html">Orders</a>
+<a href="order.html">Order</a>
 
-        <a href="contact.html">Contact</a>
+<a href="contact.html">Contact</a>
 
-    </nav>
+</nav>
 
 </header>
 
-<!-- HERO -->
+<!-- ======================
+     HERO
+======================= -->
 
 <section class="hero">
 
-    <h2>Admin Dashboard</h2>
+<h2>Admin Dashboard</h2>
 
-    <p>
-        Upload and manage gallery images and videos
-    </p>
+<p>
+Upload images and videos for gallery
+</p>
 
 </section>
 
-<!-- DASHBOARD -->
+<!-- ======================
+     DASHBOARD
+======================= -->
 
 <section class="dashboard">
 
 <div class="upload-box">
 
-    <h3>Upload Media</h3>
+<h3>Upload Media</h3>
 
-    <!-- FILE INPUT -->
+<!-- FILE INPUT -->
 
-    <div class="file-input">
+<div class="file-input">
 
-        <input
-        type="file"
-        id="fileInput"
-        accept="image/*,video/*">
+<input
+type="file"
+id="fileInput"
+accept="image/*,video/*">
 
-    </div>
+</div>
 
-    <!-- UPLOAD BUTTON -->
+<!-- UPLOAD BUTTON -->
 
-    <button onclick="uploadFile()">
-        Upload File
-    </button>
+<button onclick="uploadFile()">
 
-    <!-- LOGOUT BUTTON -->
+Upload File
 
-    <button
-    class="logout-btn"
-    onclick="logout()">
-        Logout
-    </button>
+</button>
 
-    <!-- STATUS -->
+<!-- LOGOUT BUTTON -->
 
-    <div
-    class="status"
-    id="status"></div>
+<button
+class="logout-btn"
+onclick="logout()">
 
-    <!-- PREVIEW -->
+Logout
 
-    <div
-    class="preview"
-    id="preview"></div>
+</button>
+
+<!-- STATUS -->
+
+<div
+class="status"
+id="status"></div>
+
+<!-- PREVIEW -->
+
+<div
+class="preview"
+id="preview"></div>
 
 </div>
 
 </section>
 
-<!-- FOOTER -->
+<!-- ======================
+     FOOTER
+======================= -->
 
 <footer>
 
-    <p>
-        © Eben Cooling 2025 — All Rights Reserved
-    </p>
+<p>
+© Eben Cooling 2025
+— All Rights Reserved
+</p>
 
 </footer>
 
@@ -363,7 +382,7 @@ async function uploadFile(){
 
     let uploadType = "";
 
-    // DETECT FILE TYPE
+    // IMAGE
 
     if(
     file.type.startsWith(
@@ -374,6 +393,8 @@ async function uploadFile(){
         "image";
 
     }
+
+    // VIDEO
 
     else if(
     file.type.startsWith(
@@ -513,7 +534,7 @@ async function uploadFile(){
 
 function logout(){
 
-    sessionStorage.removeItem(
+    localStorage.removeItem(
     "adminLoggedIn"
     );
 
