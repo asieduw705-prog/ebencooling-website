@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Order Service | Eben Cooling</title>
 
 <style>
+
+/* =========================
+   GLOBAL
+========================= */
 
 *{
     margin:0;
@@ -18,9 +25,12 @@ body{
     font-family:'Segoe UI', sans-serif;
     background:#0b132b;
     color:white;
+    min-height:100vh;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
     background:#1c2541;
@@ -34,82 +44,92 @@ header h1{
     color:#5bc0be;
 }
 
+nav{
+    display:flex;
+    gap:20px;
+}
+
 nav a{
     color:white;
     text-decoration:none;
-    margin-left:20px;
     font-weight:bold;
-    transition:0.3s;
 }
 
 nav a:hover{
     color:#5bc0be;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     text-align:center;
-    padding:5rem 2rem;
-    background:linear-gradient(rgba(0,0,0,0.6),
+    padding:4rem 2rem;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,0.6),
     rgba(0,0,0,0.6)),
-    url('images/banner.PNG') center/cover no-repeat;
+
+    url('images/banner.PNG')
+    center/cover no-repeat;
 }
 
 .hero h2{
-    font-size:2.8rem;
+    font-size:2.5rem;
     margin-bottom:1rem;
 }
 
 .hero p{
     color:#ddd;
-    max-width:700px;
-    margin:auto;
 }
 
-/* FORM SECTION */
+/* =========================
+   FORM SECTION
+========================= */
 
 .order-section{
     padding:4rem 2rem;
+    display:flex;
+    justify-content:center;
 }
 
-.form-container{
+.form-box{
+    width:100%;
     max-width:650px;
-    margin:auto;
     background:#1c2541;
     padding:2rem;
     border-radius:20px;
     box-shadow:0 5px 20px rgba(0,0,0,0.5);
 }
 
-.form-container h3{
+.form-box h3{
     text-align:center;
-    margin-bottom:2rem;
     color:#5bc0be;
-    font-size:2rem;
+    margin-bottom:2rem;
 }
 
 /* INPUTS */
 
-form input,
-form select,
-form textarea{
-    width:100%;
-    padding:15px;
+.input-box{
     margin-bottom:1rem;
-    border:none;
-    border-radius:10px;
-    font-size:1rem;
-    outline:none;
 }
 
-form textarea{
-    resize:none;
+.input-box input,
+.input-box select,
+.input-box textarea{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    outline:none;
+    font-size:1rem;
 }
 
 /* BUTTON */
 
-.btn{
+button{
     width:100%;
     padding:15px;
     border:none;
@@ -119,24 +139,20 @@ form textarea{
     font-size:1rem;
     font-weight:bold;
     cursor:pointer;
-    transition:0.3s;
+    margin-top:10px;
 }
 
-.btn:hover{
+button:hover{
     background:#3aafa9;
 }
 
-/* CONTACT BOX */
+/* STATUS */
 
-.contact-box{
-    margin-top:2rem;
+#status{
+    margin-top:1rem;
     text-align:center;
-    padding:1.5rem;
-    border-top:1px solid rgba(255,255,255,0.1);
-}
-
-.contact-box p{
-    margin:10px 0;
+    color:#5bc0be;
+    font-weight:bold;
 }
 
 /* FOOTER */
@@ -149,25 +165,35 @@ footer{
     margin-top:3rem;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:768px){
 
     header{
         flex-direction:column;
+        text-align:center;
     }
 
     nav{
         margin-top:10px;
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
     .hero h2{
         font-size:2rem;
     }
 
+    .order-section{
+        padding:2rem 1rem;
+    }
+
 }
 
 </style>
+
 </head>
 
 <body>
@@ -176,15 +202,19 @@ footer{
 
 <header>
 
-    <h1>Eben Cooling</h1>
+<h1>Eben Cooling</h1>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
-        <a href="dashboard.html">Dashboard</a>
-    </nav>
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="services.html">Services</a>
+
+<a href="gallery.html">Gallery</a>
+
+<a href="contact.html">Contact</a>
+
+</nav>
 
 </header>
 
@@ -192,12 +222,11 @@ footer{
 
 <section class="hero">
 
-    <h2>Book Your Cooling Service</h2>
+<h2>Book a Service</h2>
 
-    <p>
-        Fast, affordable and professional air conditioner
-        installation, servicing and repairs.
-    </p>
+<p>
+Professional cooling solutions for homes and offices
+</p>
 
 </section>
 
@@ -205,119 +234,267 @@ footer{
 
 <section class="order-section">
 
-<div class="form-container">
+<div class="form-box">
 
-<h3>Place Your Order</h3>
+<h3>Service Request Form</h3>
 
-<form action="https://formsubmit.co/ebencoolingtecnology@gmail.com" method="POST">
+<form id="orderForm">
 
-    <!-- Disable Captcha -->
-    <input type="hidden" name="_captcha" value="false">
+<!-- FULL NAME -->
 
-    <!-- Email Subject -->
-    <input type="hidden" name="_subject"
-    value="New Order From Eben Cooling Website">
+<div class="input-box">
 
-    <!-- Redirect After Submit -->
-    <input type="hidden" name="_next"
-    value="thankyou.html">
-
-    <input type="text"
-    name="Full Name"
-    placeholder="Enter Full Name"
-    required>
-
-    <input type="email"
-    name="Email"
-    placeholder="Enter Email Address"
-    required>
-
-    <input type="tel"
-    name="Phone Number"
-    placeholder="Enter Phone Number"
-    required>
-
-    <input type="text"
-    name="Location"
-    placeholder="Your Location">
-
-    <select name="Service Needed" required>
-
-        <option value="">
-            -- Select Service --
-        </option>
-
-        <option value="AC Installation">
-            AC Installation
-        </option>
-
-        <option value="AC Repairs">
-            AC Repairs
-        </option>
-
-        <option value="AC Servicing">
-            AC Servicing
-        </option>
-
-        <option value="Gas Refilling">
-            Gas Refilling
-        </option>
-
-    </select>
-
-    <textarea
-    name="Message"
-    rows="5"
-    placeholder="Additional Details"></textarea>
-
-    <button type="submit" class="btn">
-        Submit Order
-    </button>
-
-</form>
-
-<!-- CONTACT INFO -->
-
-<div class="contact-box">
-
-    <p><strong>Phone:</strong> +233 54 627 2755</p>
-
-    <p><strong>Email:</strong>
-    ebencoolingtecnology@gmail.com</p>
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
 
 </div>
+
+<!-- EMAIL -->
+
+<div class="input-box">
+
+<input
+type="email"
+id="email"
+placeholder="Email Address"
+required>
+
+</div>
+
+<!-- PHONE -->
+
+<div class="input-box">
+
+<input
+type="tel"
+id="phone"
+placeholder="Phone Number"
+required>
+
+</div>
+
+<!-- SERVICE -->
+
+<div class="input-box">
+
+<select id="service" required>
+
+<option value="">
+Select Service
+</option>
+
+<option>
+AC Installation
+</option>
+
+<option>
+Repairs
+</option>
+
+<option>
+Servicing
+</option>
+
+<option>
+Gas Refilling
+</option>
+
+</select>
+
+</div>
+
+<!-- MESSAGE -->
+
+<div class="input-box">
+
+<textarea
+id="message"
+rows="5"
+placeholder="Additional Details"></textarea>
+
+</div>
+
+<!-- BUTTON -->
+
+<button type="submit">
+
+Submit Order
+
+</button>
+
+<div id="status"></div>
+
+</form>
 
 </div>
 
 </section>
-<style>
 
-/* Social Media Section */
-.social-section{
-    text-align:center;
-    padding:20px;
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+© Eben Cooling 2025
+— All Rights Reserved
+</p>
+
+</footer>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+/* =========================
+   FIREBASE IMPORTS
+========================= */
+
+import { initializeApp }
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+addDoc,
+
+serverTimestamp
+
 }
 
-/* Icons in one straight line */
-.social-icons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCPCVms848PCesjDjt03yhrpoiBFZry0nE",
+
+  authDomain:
+  "eben-cooling.firebaseapp.com",
+
+  projectId:
+  "eben-cooling",
+
+  storageBucket:
+  "eben-cooling.firebasestorage.app",
+
+  messagingSenderId:
+  "616090448214",
+
+  appId:
+  "1:616090448214:web:3ea5624bc97eeaf53da6f7"
+
+};
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+/* =========================
+   FORM SUBMISSION
+========================= */
+
+const form =
+document.getElementById(
+"orderForm"
+);
+
+const status =
+document.getElementById(
+"status"
+);
+
+form.addEventListener(
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+status.innerHTML =
+"Submitting order...";
+
+try{
+
+    await addDoc(
+
+    collection(db,"orders"),
+
+    {
+
+        name:
+        document.getElementById(
+        "name"
+        ).value,
+
+        email:
+        document.getElementById(
+        "email"
+        ).value,
+
+        phone:
+        document.getElementById(
+        "phone"
+        ).value,
+
+        service:
+        document.getElementById(
+        "service"
+        ).value,
+
+        message:
+        document.getElementById(
+        "message"
+        ).value,
+
+        createdAt:
+        serverTimestamp()
+
+    }
+
+    );
+
+    status.innerHTML =
+    "✅ Order submitted successfully";
+
+    form.reset();
+
 }
 
-/* Small Icons */
-.social-icons a img{
-    width:35px;
-    height:35px;
-    transition:0.3s;
+catch(error){
+
+    console.log(error);
+
+    status.innerHTML =
+    "❌ Failed to submit order";
+
 }
 
-/* Hover Effect */
-.social-icons a img:hover{
-    transform:scale(1.1);
-}
+});
 
+</script>
+
+</body>
 </style>
   <!-- Social Media Section -->
 <section class="social-section">
