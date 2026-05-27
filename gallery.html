@@ -1,220 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Eben Cooling | Gallery</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<meta charset="UTF-8">
 
-    body{
-      font-family:'Segoe UI', sans-serif;
-      background:#0b132b;
-      color:white;
-    }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Gallery | Eben Cooling</title>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0b132b;
+    color:white;
+    min-height:100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#1c2541;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+}
+
+header h1{
+    color:#5bc0be;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#5bc0be;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    text-align:center;
+    padding:4rem 2rem;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,0.6),
+    rgba(0,0,0,0.6)),
+
+    url('images/banner.PNG')
+    center/cover no-repeat;
+}
+
+.hero h2{
+    font-size:2.5rem;
+    margin-bottom:1rem;
+}
+
+.hero p{
+    color:#ddd;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-section{
+    padding:4rem 2rem;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,
+    minmax(300px,1fr));
+
+    gap:20px;
+}
+
+.gallery-item{
+    background:#1c2541;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+.gallery-item img,
+.gallery-item video{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+#loading{
+    text-align:center;
+    color:#5bc0be;
+    padding:2rem;
+    font-size:1.2rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    background:#1c2541;
+    text-align:center;
+    padding:1rem;
+    color:#ccc;
+    margin-top:3rem;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
 
     header{
-      background:#1c2541;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:1rem 2rem;
+        flex-direction:column;
+        text-align:center;
     }
 
-    header h1{
-      color:#5bc0be;
-    }
-
-    nav a{
-      color:white;
-      text-decoration:none;
-      margin-left:20px;
-      font-weight:bold;
-      transition:0.3s;
-    }
-
-    nav a:hover{
-      color:#5bc0be;
-    }
-
-    .hero{
-      text-align:center;
-      padding:4rem 2rem;
-      background:linear-gradient(rgba(0,0,0,0.5),
-      rgba(0,0,0,0.5)),
-      url('images/banner.PNG') center/cover no-repeat;
+    nav{
+        margin-top:10px;
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
     .hero h2{
-      font-size:2.5rem;
-      margin-bottom:1rem;
-    }
-
-    .hero p{
-      color:#ddd;
-      max-width:700px;
-      margin:auto;
+        font-size:2rem;
     }
 
     .gallery-section{
-      padding:4rem 2rem;
-      text-align:center;
+        padding:2rem 1rem;
     }
 
-    .gallery-section h2{
-      margin-bottom:2rem;
-      color:#5bc0be;
-      font-size:2rem;
-    }
+}
 
-    .gallery{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
-      gap:20px;
-    }
+</style>
 
-    .gallery img,
-    .gallery video{
-      width:100%;
-      height:250px;
-      object-fit:cover;
-      border-radius:15px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.5);
-      transition:0.4s;
-      background:#111;
-    }
-
-    .gallery img:hover,
-    .gallery video:hover{
-      transform:scale(1.03);
-    }
-
-    footer{
-      background:#1c2541;
-      text-align:center;
-      padding:1rem;
-      color:#ccc;
-      margin-top:2rem;
-    }
-
-    @media(max-width:768px){
-
-      header{
-        flex-direction:column;
-      }
-
-      nav{
-        margin-top:10px;
-      }
-
-      .hero h2{
-        font-size:2rem;
-      }
-    }
-  </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>Eben Cooling</h1>
+<!-- HEADER -->
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="order.html">Order</a>
-      <a href="contact.html">Contact</a>
-      <a href="dashboard.html">Dashboard</a>
-    </nav>
-  </header>
+<header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <h2>Our Project Gallery</h2>
-    <p>
-      Explore some of our air conditioning installations,
-      repairs, maintenance works, and customer projects.
-    </p>
-  </section>
+<h1>Eben Cooling</h1>
 
-  <!-- Image Gallery -->
-  <section class="gallery-section">
+<nav>
 
-    <h2>Photo Gallery</h2>
+<a href="index.html">Home</a>
 
-    <div class="gallery">
+<a href="services.html">Services</a>
 
-      <img src="images/banner.PNG" alt="AC Installation">
+<a href="order.html">Order</a>
 
-      <img src="images/boss.PNG" alt="Cooling System">
+<a href="contact.html">Contact</a>
 
-      <img src="images/three.jpg" alt="Technician at work">
+</nav>
 
-      <img src="images/two.jpg" alt="AC Cleaning">
+</header>
 
-      <img src="images/one.jpg" alt="Office Cooling">
+<!-- HERO -->
 
-      <img src="images/four.jpg" alt="Home Installation">
+<section class="hero">
 
-    </div>
+<h2>Our Gallery</h2>
 
-  </section>
+<p>
+Explore our recent installation and repair works
+</p>
 
-  <!-- Video Gallery -->
-  <section class="gallery-section">
+</section>
 
-    <h2>Video Gallery</h2>
+<!-- LOADING -->
 
-    <div class="gallery">
+<div id="loading">
 
-      <video controls>
-        <source src="images/Video.MP4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+Loading gallery...
 
-      <video controls>
-        <source src="images/Video2.MP4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+</div>
 
-    </div>
+<!-- GALLERY -->
 
-  </section>
-<style>
+<section class="gallery-section">
 
-/* Social Media Section */
-.social-section{
-    text-align:center;
-    padding:20px;
+<div
+class="gallery-grid"
+id="galleryGrid">
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>
+© Eben Cooling 2025
+— All Rights Reserved
+</p>
+
+</footer>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+/* =========================
+   FIREBASE IMPORTS
+========================= */
+
+import {
+
+initializeApp
+
 }
 
-/* Icons in one straight line */
-.social-icons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+getDocs,
+
+query,
+
+orderBy
+
 }
 
-/* Small Icons */
-.social-icons a img{
-    width:35px;
-    height:35px;
-    transition:0.3s;
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCPCVms848PCesjDjt03yhrpoiBFZry0nE",
+
+  authDomain:
+  "eben-cooling.firebaseapp.com",
+
+  projectId:
+  "eben-cooling",
+
+  storageBucket:
+  "eben-cooling.firebasestorage.app",
+
+  messagingSenderId:
+  "616090448214",
+
+  appId:
+  "1:616090448214:web:3ea5624bc97eeaf53da6f7"
+
+};
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+/* =========================
+   LOAD GALLERY
+========================= */
+
+async function loadGallery(){
+
+const galleryGrid =
+document.getElementById(
+"galleryGrid"
+);
+
+const loading =
+document.getElementById(
+"loading"
+);
+
+galleryGrid.innerHTML =
+"";
+
+try{
+
+    const q =
+    query(
+
+    collection(db,"gallery"),
+
+    orderBy("createdAt","desc")
+
+    );
+
+    const querySnapshot =
+    await getDocs(q);
+
+    loading.style.display =
+    "none";
+
+    querySnapshot.forEach((doc)=>{
+
+        const data =
+        doc.data();
+
+        // IMAGE
+
+        if(data.type === "image"){
+
+            galleryGrid.innerHTML +=
+
+            `
+            <div class="gallery-item">
+
+            <img
+            src="${data.url}"
+            alt="Gallery Image">
+
+            </div>
+            `;
+
+        }
+
+        // VIDEO
+
+        else{
+
+            galleryGrid.innerHTML +=
+
+            `
+            <div class="gallery-item">
+
+            <video controls>
+
+            <source
+            src="${data.url}"
+            type="video/mp4">
+
+            </video>
+
+            </div>
+            `;
+
+        }
+
+    });
+
 }
 
-/* Hover Effect */
-.social-icons a img:hover{
-    transform:scale(1.1);
+catch(error){
+
+    console.log(error);
+
+    loading.innerHTML =
+    "Failed to load gallery";
+
 }
 
-</style>
+}
+
+loadGallery();
+
+</script>
+
+</body>
   <!-- Social Media Section -->
 <section class="social-section">
     <h2>Connect With Us</h2>
@@ -249,64 +442,5 @@
   <footer>
     <p>© Eben Cooling 2025 — All Rights Reserved</p>
   </footer>
-<script>
-
-const gallery =
-document.querySelector(".gallery");
-
-/* GET SAVED FILES */
-
-const savedGallery =
-JSON.parse(
-localStorage.getItem("gallery")
-) || [];
-
-/* LOAD FILES */
-
-savedGallery.forEach(item => {
-
-    // IMAGE
-
-    if(item.type === "image"){
-
-        gallery.innerHTML +=
-
-        `
-        <div class="media-box">
-
-            <img
-            src="${item.url}"
-            alt="Gallery Image">
-
-        </div>
-        `;
-
-    }
-
-    // VIDEO
-
-    else if(item.type === "video"){
-
-        gallery.innerHTML +=
-
-        `
-        <div class="media-box">
-
-            <video controls>
-
-                <source
-                src="${item.url}"
-                type="video/mp4">
-
-            </video>
-
-        </div>
-        `;
-
-    }
-
-});
-
 </script>
-</body>
 </html>
