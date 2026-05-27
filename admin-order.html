@@ -1,1 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin Orders | Eben Cooling</title>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0b132b;
+    color:white;
+    min-height:100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#1c2541;
+    padding:1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+header h1{
+    color:#5bc0be;
+}
+
+.logout-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* =========================
+   PAGE TITLE
+========================= */
+
+.title{
+    text-align:center;
+    padding:2rem;
+}
+
+.title h2{
+    color:#5bc0be;
+}
+
+/* =========================
+   ORDERS
+========================= */
+
+.orders-container{
+    padding:2rem;
+    display:grid;
+    gap:20px;
+}
+
+.order-card{
+    background:#1c2541;
+    padding:1.5rem;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+.order-card h3{
+    color:#5bc0be;
+    margin-bottom:10px;
+}
+
+.order-card p{
+    margin:8px 0;
+    color:#ddd;
+}
+
+/* DELETE BUTTON */
+
+.delete-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+    margin-top:1rem;
+}
+
+/* LOADING */
+
+#loading{
+    text-align:center;
+    padding:2rem;
+    color:#5bc0be;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<script>
+
+/* =========================
+   LOGIN PROTECTION
+========================= */
+
+if(
+    localStorage.getItem(
+    "adminLoggedIn"
+    ) !== "true"
+){
+
+    window.location.href =
+    "login.html";
+
+}
+
+</script>
+
+<!-- HEADER -->
+
+<header>
+
+<h1>Eben Cooling Admin</h1>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</header>
+
+<!-- TITLE -->
+
+<section class="title">
+
+<h2>Customer Orders</h2>
+
+<p>
+Manage customer service requests
+</p>
+
+</section>
+
+<!-- LOADING -->
+
+<div id="loading">
+
+Loading orders...
+
+</div>
+
+<!-- ORDERS -->
+
+<div
+class="orders-container"
+id="ordersContainer">
+
+</div>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+/* =========================
+   FIREBASE IMPORTS
+========================= */
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+getDocs,
+
+deleteDoc,
+
+doc,
+
+query,
+
+orderBy
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCPCVms848PCesjDjt03yhrpoiBFZry0nE",
+
+  authDomain:
+  "eben-cooling.firebaseapp.com",
+
+  projectId:
+  "eben-cooling",
+
+  storageBucket:
+  "eben-cooling.firebasestorage.app",
+
+  messagingSenderId:
+  "616090448214",
+
+  appId:
+  "1:616090448214:web:3ea5624bc97eeaf53da6f7"
+
+};
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+/* =========================
+   LOAD ORDERS
+========================= */
+
+async function loadOrders(){
+
+const ordersContainer =
+document.getElementById(
+"ordersContainer"
+);
+
+const loading =
+document.getElementById(
+"loading"
+);
+
+ordersContainer.innerHTML =
+"";
+
+try{
+
+    const q =
+    query(
+
+    collection(db,"orders"),
+
+    orderBy("createdAt","desc")
+
+    );
+
+    const querySnapshot =
+    await getDocs(q);
+
+    loading.style.display =
+    "none";
+
+    querySnapshot.forEach((docSnap)=>{
+
+        const data =
+        docSnap.data();
+
+        ordersContainer.innerHTML +=
+
+        `
+        <div class="order-card">
+
+        <h3>${data.service}</h3>
+
+        <p>
+        <strong>Name:</strong>
+        ${data.name}
+        </p>
+
+        <p>
+        <strong>Email:</strong>
+        ${data.email}
+        </p>
+
+        <p>
+        <strong>Phone:</strong>
+        ${data.phone}
+        </p>
+
+        <p>
+        <strong>Message:</strong>
+        ${data.message || "No message"}
+        </p>
+
+        <button
+        class="delete-btn"
+        onclick="deleteOrder('${docSnap.id}')">
+
+        Delete Order
+
+        </button>
+
+        </div>
+        `;
+
+    });
+
+}
+
+catch(error){
+
+    console.log(error);
+
+    loading.innerHTML =
+    "Failed to load orders";
+
+}
+
+}
+
+loadOrders();
+
+/* =========================
+   DELETE ORDER
+========================= */
+
+window.deleteOrder =
+async function(id){
+
+const confirmDelete =
+confirm(
+"Delete this order?"
+);
+
+if(!confirmDelete){
+
+    return;
+
+}
+
+try{
+
+    await deleteDoc(
+    doc(db,"orders",id)
+    );
+
+    alert(
+    "Order deleted"
+    );
+
+    loadOrders();
+
+}
+
+catch(error){
+
+    console.log(error);
+
+    alert(
+    "Failed to delete order"
+    );
+
+}
+
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+window.logout =
+function(){
+
+localStorage.removeItem(
+"adminLoggedIn"
+);
+
+window.location.href =
+"login.html";
+
+}
+
+</script>
+
+</body>
+</html>
