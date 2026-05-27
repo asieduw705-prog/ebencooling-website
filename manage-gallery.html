@@ -1,1 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Manage Gallery | Eben Cooling</title>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:#0b132b;
+    color:white;
+    min-height:100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:#1c2541;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 2rem;
+}
+
+header h1{
+    color:#5bc0be;
+}
+
+.logout-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title{
+    text-align:center;
+    padding:3rem 2rem;
+}
+
+.title h2{
+    color:#5bc0be;
+}
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-grid{
+    padding:2rem;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,
+    minmax(300px,1fr));
+
+    gap:20px;
+}
+
+.gallery-item{
+    background:#1c2541;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+.gallery-item img,
+.gallery-item video{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+/* DELETE BUTTON */
+
+.delete-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    background:red;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+}
+
+/* LOADING */
+
+#loading{
+    text-align:center;
+    color:#5bc0be;
+    padding:2rem;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<script>
+
+/* =========================
+   LOGIN PROTECTION
+========================= */
+
+if(
+    localStorage.getItem(
+    "adminLoggedIn"
+    ) !== "true"
+){
+
+    window.location.href =
+    "login.html";
+
+}
+
+</script>
+
+<!-- HEADER -->
+
+<header>
+
+<h1>Eben Cooling Admin</h1>
+
+<button
+class="logout-btn"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</header>
+
+<!-- TITLE -->
+
+<section class="title">
+
+<h2>Manage Gallery</h2>
+
+<p>
+Delete uploaded images and videos
+</p>
+
+</section>
+
+<!-- LOADING -->
+
+<div id="loading">
+
+Loading gallery...
+
+</div>
+
+<!-- GALLERY -->
+
+<div
+class="gallery-grid"
+id="galleryGrid">
+
+</div>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+/* =========================
+   FIREBASE IMPORTS
+========================= */
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+getFirestore,
+
+collection,
+
+getDocs,
+
+deleteDoc,
+
+doc,
+
+query,
+
+orderBy
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyCPCVms848PCesjDjt03yhrpoiBFZry0nE",
+
+  authDomain:
+  "eben-cooling.firebaseapp.com",
+
+  projectId:
+  "eben-cooling",
+
+  storageBucket:
+  "eben-cooling.firebasestorage.app",
+
+  messagingSenderId:
+  "616090448214",
+
+  appId:
+  "1:616090448214:web:3ea5624bc97eeaf53da6f7"
+
+};
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app =
+initializeApp(firebaseConfig);
+
+const db =
+getFirestore(app);
+
+/* =========================
+   LOAD GALLERY
+========================= */
+
+async function loadGallery(){
+
+const galleryGrid =
+document.getElementById(
+"galleryGrid"
+);
+
+const loading =
+document.getElementById(
+"loading"
+);
+
+galleryGrid.innerHTML =
+"";
+
+try{
+
+    const q =
+    query(
+
+    collection(db,"gallery"),
+
+    orderBy("createdAt","desc")
+
+    );
+
+    const querySnapshot =
+    await getDocs(q);
+
+    loading.style.display =
+    "none";
+
+    querySnapshot.forEach((docSnap)=>{
+
+        const data =
+        docSnap.data();
+
+        // IMAGE
+
+        if(data.type === "image"){
+
+            galleryGrid.innerHTML +=
+
+            `
+            <div class="gallery-item">
+
+            <img
+            src="${data.url}">
+
+            <button
+            class="delete-btn"
+            onclick="deleteMedia('${docSnap.id}')">
+
+            Delete
+
+            </button>
+
+            </div>
+            `;
+
+        }
+
+        // VIDEO
+
+        else{
+
+            galleryGrid.innerHTML +=
+
+            `
+            <div class="gallery-item">
+
+            <video controls>
+
+            <source
+            src="${data.url}"
+            type="video/mp4">
+
+            </video>
+
+            <button
+            class="delete-btn"
+            onclick="deleteMedia('${docSnap.id}')">
+
+            Delete
+
+            </button>
+
+            </div>
+            `;
+
+        }
+
+    });
+
+}
+
+catch(error){
+
+    console.log(error);
+
+    loading.innerHTML =
+    "Failed to load gallery";
+
+}
+
+}
+
+loadGallery();
+
+/* =========================
+   DELETE MEDIA
+========================= */
+
+window.deleteMedia =
+async function(id){
+
+const confirmDelete =
+confirm(
+"Delete this media?"
+);
+
+if(!confirmDelete){
+
+    return;
+
+}
+
+try{
+
+    await deleteDoc(
+    doc(db,"gallery",id)
+    );
+
+    alert(
+    "Media deleted"
+    );
+
+    loadGallery();
+
+}
+
+catch(error){
+
+    console.log(error);
+
+    alert(
+    "Delete failed"
+    );
+
+}
+
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+window.logout =
+function(){
+
+localStorage.removeItem(
+"adminLoggedIn"
+);
+
+window.location.href =
+"login.html";
+
+}
+
+</script>
+
+</body>
+</html>
