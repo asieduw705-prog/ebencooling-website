@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0b132b;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.box{
+    background:#1c2541;
+    padding:30px;
+    border-radius:15px;
+    width:300px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border:none;
+    border-radius:5px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#5bc0be;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    background:#3aafa9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h2>Admin Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<p id="msg"></p>
+</div>
+
+<script>
+function login(){
+
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+
+    // SIMPLE LOGIN (you can upgrade later)
+    if(user === "admin" && pass === "1234"){
+
+        localStorage.setItem("adminLoggedIn","true");
+
+        window.location.href = "dashboard.html";
+
+    } else {
+
+        document.getElementById("msg").innerText =
+        "Wrong username or password";
+
+    }
+
+}
+</script>
+
+</body>
+</html>
