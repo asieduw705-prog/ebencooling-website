@@ -292,21 +292,30 @@ ordersContainer.innerHTML += `
 <p><strong>Phone:</strong> ${data.phone}</p>
 <p><strong>Message:</strong> ${data.message || "No message"}</p>
 
+<p><strong>Status:</strong> ${data.status || "Pending"}</p>
+
+<!-- STATUS BUTTONS -->
+
+<button onclick="updateStatus('${docSnap.id}','Pending')">
+Pending
+</button>
+
+<button onclick="updateStatus('${docSnap.id}','In Progress')">
+In Progress
+</button>
+
+<button onclick="updateStatus('${docSnap.id}','Completed')">
+Completed
+</button>
+
+<br><br>
+
 <button class="delete-btn"
 onclick="deleteOrder('${docSnap.id}')">
 Delete
 </button>
 
-</div>
-`;
-
-});
-
-});
-
-}
-
-loadOrdersRealtime();
+</div> 
 
 /* =========================
    DELETE ORDER
