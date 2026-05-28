@@ -202,31 +202,23 @@ id="ordersContainer">
 /* =========================
    FIREBASE IMPORTS
 ========================= */
-import { onSnapshot } from
+import { updateDoc, doc } from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
+window.updateStatus = async function(id, status){
 
-getFirestore,
+try{
 
-collection,
+await updateDoc(doc(db,"orders",id),{
+status: status
+});
 
-getDocs,
+alert("Status updated");
 
-deleteDoc,
-
-doc,
-
-query,
-
-orderBy
-
+}catch(err){
+console.log(err);
+alert("Failed to update status");
 }
-
-from
-
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 /* =========================
    FIREBASE CONFIG
 ========================= */
