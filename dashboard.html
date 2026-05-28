@@ -3,151 +3,127 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>Admin Dashboard | Eben Cooling</title>
+<title>Eben Cooling Admin Dashboard</title>
 
 <style>
 
-/* =========================
+/* =======================
    GLOBAL
-========================= */
+======================= */
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
 }
 
 body{
-    font-family:'Segoe UI', sans-serif;
-    background:#0b132b;
-    color:white;
-    min-height:100vh;
+  background:#0b132b;
+  color:white;
+  display:flex;
+  min-height:100vh;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* =======================
+   SIDEBAR
+======================= */
 
-header{
-    background:#1c2541;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:1rem 2rem;
+.sidebar{
+  width:250px;
+  background:#1c2541;
+  padding:20px;
 }
 
-header h1{
-    color:#5bc0be;
+.sidebar h2{
+  color:#5bc0be;
+  margin-bottom:20px;
 }
 
-.logout-btn{
-    background:red;
-    color:white;
-    border:none;
-    padding:10px 20px;
-    border-radius:30px;
-    cursor:pointer;
-    font-weight:bold;
+.sidebar button{
+  width:100%;
+  margin:10px 0;
+  padding:12px;
+  border:none;
+  background:#5bc0be;
+  color:#0b132b;
+  font-weight:bold;
+  cursor:pointer;
+  border-radius:8px;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    text-align:center;
-    padding:4rem 2rem;
+.sidebar button:hover{
+  background:#3aafa9;
 }
 
-.hero h2{
-    font-size:2.5rem;
-    color:#5bc0be;
+/* =======================
+   MAIN
+======================= */
+
+.main{
+  flex:1;
+  padding:20px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
+/* =======================
+   CARDS
+======================= */
 
-.dashboard{
-    padding:2rem;
-    display:flex;
-    justify-content:center;
+.card{
+  background:#1c2541;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:15px;
 }
 
-.upload-box{
-    width:100%;
-    max-width:700px;
-    background:#1c2541;
-    padding:2rem;
-    border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.5);
+/* INPUTS */
+
+input, textarea, select{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:none;
+  border-radius:6px;
 }
 
-.file-input{
-    border:2px dashed #5bc0be;
-    padding:2rem;
-    border-radius:15px;
-    text-align:center;
-    margin-bottom:1rem;
+/* BUTTON */
+
+.btn{
+  background:#5bc0be;
+  color:#0b132b;
+  border:none;
+  padding:10px;
+  width:100%;
+  cursor:pointer;
+  font-weight:bold;
+  border-radius:8px;
 }
 
-.file-input input{
-    width:100%;
+.btn:hover{
+  background:#3aafa9;
 }
 
-button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:30px;
-    background:#5bc0be;
-    color:#0b132b;
-    font-size:1rem;
-    font-weight:bold;
-    cursor:pointer;
+/* DELETE */
+
+.delete{
+  background:red;
+  color:white;
+  margin-top:10px;
 }
 
-button:hover{
-    background:#3aafa9;
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:10px;
 }
 
-/* STATUS */
-
-#status{
-    text-align:center;
-    margin-top:1rem;
-    color:#5bc0be;
-}
-
-/* PREVIEW */
-
-.preview{
-    margin-top:2rem;
-}
-
-.preview img,
-.preview video{
-    width:100%;
-    border-radius:15px;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-    header{
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .dashboard{
-        padding:1rem;
-    }
-
+img, video{
+  width:100%;
+  border-radius:10px;
 }
 
 </style>
@@ -157,365 +133,193 @@ button:hover{
 <body>
 
 <script>
-
-/* =========================
-   LOGIN PROTECTION
-========================= */
-
-if(
-    localStorage.getItem(
-    "adminLoggedIn"
-    ) !== "true"
-){
-
-    window.location.href =
-    "login.html";
-
+if(localStorage.getItem("adminLoggedIn") !== "true"){
+  window.location.href="login.html";
 }
-
 </script>
 
-<!-- HEADER -->
+<!-- SIDEBAR -->
+<div class="sidebar">
 
-<header>
+<h2>Admin Panel</h2>
 
-<h1>Eben Cooling Admin</h1>
+<button onclick="show('orders')">Orders</button>
+<button onclick="show('upload')">Upload</button>
+<button onclick="show('gallery')">Gallery</button>
 
-<button
-class="logout-btn"
-onclick="logout()">
-
-Logout
-
-</button>
-
-</header>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<h2>Gallery Upload System</h2>
-
-<p>
-Upload images and videos directly to your website gallery
-</p>
-
-</section>
-
-<!-- DASHBOARD -->
-
-<section class="dashboard">
-
-<div class="upload-box">
-
-<!-- FILE INPUT -->
-
-<div class="file-input">
-
-<input
-type="file"
-id="fileInput"
-accept="image/*,video/*">
+<button onclick="logout()">Logout</button>
 
 </div>
 
-<!-- BUTTON -->
+<!-- MAIN -->
+<div class="main">
 
-<button onclick="uploadFile()">
+<!-- ORDERS -->
+<div id="orders" class="section">
 
-Upload Media
-
-</button>
-
-<!-- STATUS -->
-
-<div id="status"></div>
-
-<!-- PREVIEW -->
-
-<div
-class="preview"
-id="preview"></div>
+<h2>Customer Orders</h2>
+<div id="ordersList"></div>
 
 </div>
 
-</section>
+<!-- UPLOAD -->
+<div id="upload" class="section" style="display:none">
+
+<h2>Upload Media</h2>
+
+<input type="file" id="file">
+
+<button class="btn" onclick="upload()">Upload</button>
+
+<p id="status"></p>
+
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="section" style="display:none">
+
+<h2>Gallery</h2>
+<div class="grid" id="galleryList"></div>
+
+</div>
+
+</div>
 
 <!-- FIREBASE -->
-
 <script type="module">
 
-/* =========================
-   FIREBASE IMPORTS
-========================= */
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
-
-initializeApp
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-
 getFirestore,
-
 collection,
-
+getDocs,
+deleteDoc,
+doc,
 addDoc,
-
+onSnapshot,
 serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-/* =========================
-   FIREBASE CONFIG
-========================= */
-
+/* FIREBASE */
 const firebaseConfig = {
-
-  apiKey:
-  "AIzaSyCPCVms848PCesjDjt03yhrpoiBFZry0nE",
-
-  authDomain:
-  "eben-cooling.firebaseapp.com",
-
-  projectId:
-  "eben-cooling",
-
-  storageBucket:
-  "eben-cooling.firebasestorage.app",
-
-  messagingSenderId:
-  "616090448214",
-
-  appId:
-  "1:616090448214:web:3ea5624bc97eeaf53da6f7"
-
+apiKey: "AIzaSyCPCVms848PCesjDjt03yhrpoiBFZry0nE",
+authDomain: "eben-cooling.firebaseapp.com",
+projectId: "eben-cooling",
+storageBucket: "eben-cooling.firebasestorage.app",
+messagingSenderId: "616090448214",
+appId: "1:616090448214:web:3ea5624bc97eeaf53da6f7"
 };
 
-/* =========================
-   INITIALIZE FIREBASE
-========================= */
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const app =
-initializeApp(firebaseConfig);
+/* NAVIGATION */
+window.show = function(id){
+document.querySelectorAll(".section").forEach(s=>s.style.display="none");
+document.getElementById(id).style.display="block";
+}
 
-const db =
-getFirestore(app);
+/* =======================
+   ORDERS REALTIME
+======================= */
 
-/* =========================
-   CLOUDINARY SETTINGS
-========================= */
+onSnapshot(collection(db,"orders"),(snap)=>{
 
-const cloudName =
-"dnw3fdbhr";
+let html="";
 
-const uploadPreset =
-"ebencooling media";
+snap.forEach(d=>{
 
-/* =========================
-   UPLOAD FUNCTION
-========================= */
+let data=d.data();
 
-window.uploadFile =
-async function(){
+html+=`
+<div class="card">
+<p><b>Name:</b> ${data.name}</p>
+<p><b>Service:</b> ${data.service}</p>
+<p><b>Status:</b> ${data.status || "Pending"}</p>
 
-const fileInput =
-document.getElementById(
-"fileInput"
+<button class="btn delete"
+onclick="delOrder('${d.id}')">Delete</button>
+</div>
+`;
+
+});
+
+document.getElementById("ordersList").innerHTML=html;
+
+});
+
+/* DELETE ORDER */
+window.delOrder=async(id)=>{
+await deleteDoc(doc(db,"orders",id));
+}
+
+/* =======================
+   UPLOAD TO CLOUDINARY
+======================= */
+
+const cloud="dnw3fdbhr";
+const preset="ebencooling media";
+
+window.upload=async()=>{
+
+let file=document.getElementById("file").files[0];
+let status=document.getElementById("status");
+
+if(!file){alert("Select file");return;}
+
+let type=file.type.startsWith("video")?"video":"image";
+
+let form=new FormData();
+form.append("file",file);
+form.append("upload_preset",preset);
+
+status.innerText="Uploading...";
+
+let res=await fetch(
+`https://api.cloudinary.com/v1_1/${cloud}/${type}/upload`,
+{method:"POST",body:form}
 );
 
-const file =
-fileInput.files[0];
+let data=await res.json();
 
-const status =
-document.getElementById(
-"status"
-);
+/* SAVE TO FIREBASE */
+await addDoc(collection(db,"gallery"),{
+url:data.secure_url,
+type,
+createdAt:serverTimestamp()
+});
 
-const preview =
-document.getElementById(
-"preview"
-);
-
-if(!file){
-
-    alert(
-    "Please select a file"
-    );
-
-    return;
-
+status.innerText="Uploaded!";
 }
 
-let uploadType = "";
+/* =======================
+   GALLERY LOAD
+======================= */
 
-/* DETECT FILE TYPE */
+onSnapshot(collection(db,"gallery"),(snap)=>{
 
-if(
-file.type.startsWith(
-"image"
-)){
+let html="";
 
-    uploadType =
-    "image";
+snap.forEach(d=>{
 
+let data=d.data();
+
+if(data.type==="image"){
+html+=`<img src="${data.url}">`;
+}else{
+html+=`<video controls src="${data.url}"></video>`;
 }
 
-else if(
-file.type.startsWith(
-"video"
-)){
+});
 
-    uploadType =
-    "video";
+document.getElementById("galleryList").innerHTML=html;
 
-}
+});
 
-else{
-
-    alert(
-    "Unsupported file"
-    );
-
-    return;
-
-}
-
-const formData =
-new FormData();
-
-formData.append(
-"file",
-file
-);
-
-formData.append(
-"upload_preset",
-uploadPreset
-);
-
-try{
-
-    status.innerHTML =
-    "Uploading media...";
-
-    /* =========================
-       UPLOAD TO CLOUDINARY
-    ========================= */
-
-    const response =
-    await fetch(
-
-    `https://api.cloudinary.com/v1_1/dnw3fdbhr/image/upload`,
-
-    {
-        method:"POST",
-        body:formData
-    }
-
-    );
-
-    const data =
-    await response.json();
-
-    console.log(data);
-
-    /* =========================
-       SAVE TO FIREBASE
-    ========================= */
-
-    await addDoc(
-
-    collection(db,"gallery"),
-
-    {
-
-        url:data.secure_url,
-
-        type:uploadType,
-
-        createdAt:
-        serverTimestamp()
-
-    }
-
-    );
-
-    /* =========================
-       SUCCESS
-    ========================= */
-
-    status.innerHTML =
-    "✅ Upload successful";
-
-    // IMAGE PREVIEW
-
-    if(uploadType === "image"){
-
-        preview.innerHTML =
-
-        `
-        <img
-        src="${data.secure_url}">
-        `;
-
-    }
-
-    // VIDEO PREVIEW
-
-    else{
-
-        preview.innerHTML =
-
-        `
-        <video controls>
-
-        <source
-        src="${data.secure_url}"
-        type="video/mp4">
-
-        </video>
-        `;
-
-    }
-
-}
-
-catch(error){
-
-    console.log(error);
-
-    status.innerHTML =
-    "❌ Upload failed";
-
-}
-
-}
-
-/* =========================
-   LOGOUT
-========================= */
-
-window.logout =
-function(){
-
-localStorage.removeItem(
-"adminLoggedIn"
-);
-
-window.location.href =
-"login.html";
-
+/* LOGOUT */
+window.logout=()=>{
+localStorage.removeItem("adminLoggedIn");
+window.location.href="login.html";
 }
 
 </script>
