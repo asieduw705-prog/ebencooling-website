@@ -202,16 +202,8 @@ id="ordersContainer">
 /* =========================
    FIREBASE IMPORTS
 ========================= */
-
-import {
-
-initializeApp
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { onSnapshot } from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
 
@@ -274,98 +266,47 @@ getFirestore(app);
 /* =========================
    LOAD ORDERS
 ========================= */
-
-async function loadOrders(){
+function loadOrdersRealtime(){
 
 const ordersContainer =
-document.getElementById(
-"ordersContainer"
-);
+document.getElementById("ordersContainer");
 
-const loading =
-document.getElementById(
-"loading"
-);
+const q =
+query(collection(db,"orders"));
 
-ordersContainer.innerHTML =
-"";
+onSnapshot(q,(snapshot)=>{
 
-try{
+ordersContainer.innerHTML = "";
 
-    const q =
-    query(
+snapshot.forEach((docSnap)=>{
 
-    collection(db,"orders"),
+const data = docSnap.data();
 
-    orderBy("createdAt","desc")
+ordersContainer.innerHTML += `
+<div class="order-card">
 
-    );
+<h3>${data.service}</h3>
 
-    const querySnapshot =
-    await getDocs(q);
+<p><strong>Name:</strong> ${data.name}</p>
+<p><strong>Email:</strong> ${data.email}</p>
+<p><strong>Phone:</strong> ${data.phone}</p>
+<p><strong>Message:</strong> ${data.message || "No message"}</p>
 
-    loading.style.display =
-    "none";
+<button class="delete-btn"
+onclick="deleteOrder('${docSnap.id}')">
+Delete
+</button>
 
-    querySnapshot.forEach((docSnap)=>{
+</div>
+`;
 
-        const data =
-        docSnap.data();
+});
 
-        ordersContainer.innerHTML +=
-
-        `
-        <div class="order-card">
-
-        <h3>${data.service}</h3>
-
-        <p>
-        <strong>Name:</strong>
-        ${data.name}
-        </p>
-
-        <p>
-        <strong>Email:</strong>
-        ${data.email}
-        </p>
-
-        <p>
-        <strong>Phone:</strong>
-        ${data.phone}
-        </p>
-
-        <p>
-        <strong>Message:</strong>
-        ${data.message || "No message"}
-        </p>
-
-        <button
-        class="delete-btn"
-        onclick="deleteOrder('${docSnap.id}')">
-
-        Delete Order
-
-        </button>
-
-        </div>
-        `;
-
-    });
+});
 
 }
 
-catch(error){
-
-    console.log(error);
-
-    loading.innerHTML =
-    "Failed to load orders";
-
-}
-
-}
-
-loadOrders();
+loadOrdersRealtime();
 
 /* =========================
    DELETE ORDER
